@@ -1,0 +1,5 @@
+torch
+opencv-python
+boto3
+Pillow
+python-dotenv
