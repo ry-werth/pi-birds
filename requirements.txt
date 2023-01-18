@@ -3,3 +3,13 @@ opencv-python
 boto3
 Pillow
 python-dotenv
+
+pandas
+ipython
+torchvision
+pyYAML
+tqdm
+matplotlib
+seaborn
+gitpython
+scipy
