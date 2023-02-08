@@ -20,7 +20,7 @@ import cv2
 from tflite_support.task import core
 from tflite_support.task import processor
 from tflite_support.task import vision
-import utils
+import tf_utils
 
 
 def run(model: str, camera_id: int, width: int, height: int, num_threads: int,
@@ -81,8 +81,11 @@ def run(model: str, camera_id: int, width: int, height: int, num_threads: int,
     # Run object detection estimation using the model.
     detection_result = detector.detect(input_tensor)
 
+    birds = [detection for detection in detection_result.detections if detection.categories[0].category_name  == 'bird']
+    detection_result.detections = birds
+
     # Draw keypoints and edges on input image
-    image = utils.visualize(image, detection_result)
+    image = tf_utils.visualize(image, detection_result)
 
     # Calculate the FPS
     if counter % fps_avg_frame_count == 0:
@@ -112,7 +115,7 @@ def main():
       '--model',
       help='Path of the object detection model.',
       required=False,
-      default='efficientdet_lite0.tflite')
+      default='models/efficientdet_lite0.tflite')
   parser.add_argument(
       '--cameraId', help='Id of camera.', required=False, type=int, default=0)
   parser.add_argument(

@@ -13,3 +13,8 @@ matplotlib
 seaborn
 gitpython
 scipy
+
+tflite-support>=0.4.2
+protobuf>=3.18.0,<4
+argparse
+utils
